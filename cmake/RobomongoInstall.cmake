@@ -72,13 +72,7 @@ elseif(SYSTEM_MACOSX)
         "${OpenSSL_DIR}/libcrypto.1.1.dylib"
         DESTINATION ${lib_dir}/lib)
 elseif(SYSTEM_LINUX)
-    install(
-        FILES 
-        "${OpenSSL_DIR}/libssl.so"
-        "${OpenSSL_DIR}/libssl.so.1.0.0"        
-        "${OpenSSL_DIR}/libcrypto.so"        
-        "${OpenSSL_DIR}/libcrypto.so.1.0.0"
-        DESTINATION ${lib_dir})         
+    # OpenSSL 3.x is available system-wide on Linux; no need to bundle it.
 endif()
 
 # Install binary
@@ -116,8 +110,8 @@ if(SYSTEM_LINUX)
         
     install(
         FILES
-            "/usr/lib/x86_64-linux-gnu/libstdc++.so.6"
-            "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28"              
+            "/usr/lib/libstdc++.so.6"
+            "/usr/lib/libstdc++.so.6.0.34"
         DESTINATION ${lib_dir})
 elseif(SYSTEM_MACOSX)
     install_qt_lib(MacExtras DBus)
