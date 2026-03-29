@@ -1,7 +1,9 @@
 #include "robomongo/gui/widgets/workarea/BsonTableModel.h"
 
+#include <QApplication>
 #include <QBrush>
 #include <QIcon>
+#include <QPalette>
 
 #include "robomongo/gui/widgets/workarea/BsonTreeItem.h"
 #include "robomongo/gui/widgets/workarea/BsonTreeModel.h"
@@ -114,7 +116,9 @@ namespace Robomongo
 
         if (!node) {
             if (role == Qt::BackgroundRole) {
-                return QBrush("#f5f3f2");
+                // Use the application's Mid palette color so empty cells blend
+                // naturally in both dark and light themes.
+                return QBrush(QApplication::palette().color(QPalette::Mid));
             }
             return result;
         }

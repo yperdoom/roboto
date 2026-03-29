@@ -10,6 +10,7 @@
 
 #include "robomongo/gui/GuiRegistry.h"
 #include "robomongo/gui/AppStyle.h"
+#include "robomongo/gui/AppTheme.h"
 #include "robomongo/gui/utils/ComboBoxUtils.h"
 #include "robomongo/core/utils/QtUtils.h"
 #include "robomongo/core/AppRegistry.h"
@@ -73,13 +74,21 @@ namespace Robomongo
         _disabelConnectionShortcutsCheckBox = new QCheckBox("Disable connection shortcuts");
         layout->addWidget(_disabelConnectionShortcutsCheckBox);
 
+        QHBoxLayout *themeLayout = new QHBoxLayout(this);
+        QLabel *themeLabel = new QLabel("Theme:");
+        themeLayout->addWidget(themeLabel);
+        _themeComboBox = new QComboBox();
+        _themeComboBox->addItems(AppThemeUtils::getSupportedThemes());
+        themeLayout->addWidget(_themeComboBox);
+        layout->addLayout(themeLayout);
+
         QHBoxLayout *stylesLayout = new QHBoxLayout(this);
         QLabel *stylesLabel = new QLabel("Styles:");
         stylesLayout->addWidget(stylesLabel);
         _stylesComboBox = new QComboBox();
         _stylesComboBox->addItems(AppStyleUtils::getSupportedStyles());
         stylesLayout->addWidget(_stylesComboBox);
-        layout->addLayout(stylesLayout);   
+        layout->addLayout(stylesLayout);
 
         QDialogButtonBox *buttonBox = new QDialogButtonBox(this);
         buttonBox->setOrientation(Qt::Horizontal);
@@ -101,6 +110,7 @@ namespace Robomongo
         _loadMongoRcJsCheckBox->setChecked(AppRegistry::instance().settingsManager()->loadMongoRcJs());
         _disabelConnectionShortcutsCheckBox->setChecked(AppRegistry::instance().settingsManager()->disableConnectionShortcuts());
         utils::setCurrentText(_stylesComboBox, Robomongo::AppRegistry::instance().settingsManager()->currentStyle());
+        utils::setCurrentText(_themeComboBox, Robomongo::AppRegistry::instance().settingsManager()->currentTheme());
     }
 
     void PreferencesDialog::accept()
@@ -118,6 +128,8 @@ namespace Robomongo
         AppRegistry::instance().settingsManager()->setDisableConnectionShortcuts(_disabelConnectionShortcutsCheckBox->isChecked());
         Robomongo::AppRegistry::instance().settingsManager()->setCurrentStyle(_stylesComboBox->currentText());
         AppStyleUtils::applyStyle(_stylesComboBox->currentText());
+        Robomongo::AppRegistry::instance().settingsManager()->setCurrentTheme(_themeComboBox->currentText());
+        AppThemeUtils::applyTheme(_themeComboBox->currentText());
         Robomongo::AppRegistry::instance().settingsManager()->save();
 
         return BaseClass::accept();

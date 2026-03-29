@@ -145,6 +145,9 @@ namespace Robomongo
         QString currentStyle() const { return _currentStyle; }
         void setCurrentStyle(const QString& style);
 
+        QString currentTheme() const { return _currentTheme; }
+        void setCurrentTheme(const QString& theme);
+
         QString textFontFamily() const { return _textFontFamily; }
         void setTextFontFamily(const QString& fontFamily);
 
@@ -226,6 +229,7 @@ namespace Robomongo
         int _batchSize;
         bool _checkForUpdates = true;
         QString _currentStyle;
+        QString _currentTheme;
         QString _textFontFamily;
         int _textFontPointSize;
 

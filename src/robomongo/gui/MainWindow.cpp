@@ -45,6 +45,7 @@
 #include "robomongo/gui/dialogs/ConnectionsDialog.h"
 #include "robomongo/gui/dialogs/AboutDialog.h"
 #include "robomongo/gui/dialogs/PreferencesDialog.h"
+#include "robomongo/gui/AppTheme.h"
 #include "robomongo/gui/dialogs/ExportDialog.h"
 #include "robomongo/gui/dialogs/ChangeShellTimeoutDialog.h"
 #include "robomongo/gui/GuiRegistry.h"
@@ -147,12 +148,14 @@ namespace Robomongo
         QString explorerColor = background.lighter(103).name();
     #endif
 
+        QColor queryBg = AppThemeUtils::queryBackground();
+        QString queryBgName = queryBg.name();
         qApp->setStyleSheet(QString(
-            "QWidget#queryWidget { background-color:#E7E5E4; margin: 0px; padding:0px; } \n"
-            "Robomongo--ExplorerTreeWidget#explorerTree { padding: 1px 0px 0px 0px; background-color: %1; border: 0px; } \n"
-            "QMainWindow::separator { background: #E7E5E4; width: 1px; } \n"
+            "QWidget#queryWidget { background-color:%1; margin: 0px; padding:0px; } \n"
+            "Robomongo--ExplorerTreeWidget#explorerTree { padding: 1px 0px 0px 0px; background-color: %2; border: 0px; } \n"
+            "QMainWindow::separator { background: %1; width: 1px; } \n"
             "QMessageBox { messagebox-text-interaction-flags: 5; }"  // Make QMessageBox text selectable
-        ).arg(explorerColor));
+        ).arg(queryBgName, explorerColor));
         _openAction = new QAction(GuiRegistry::instance().openIcon(), tr("&Open..."), this);
         _openAction->setToolTip(QString("Load script from the file to the currently opened shell <b>(%1 + O)</b>").arg(controlKey));
         _openAction->setShortcuts(QKeySequence::Open);
@@ -534,7 +537,7 @@ namespace Robomongo
 
     /*** About menu ***/
 
-        QAction *aboutRobomongoAction = new QAction("&About Robo 3T...", this);
+        QAction *aboutRobomongoAction = new QAction("&About RoboTo...", this);
         VERIFY(connect(aboutRobomongoAction, SIGNAL(triggered()), this, SLOT(aboutRobomongo())));
 
         // Options menu
@@ -599,7 +602,7 @@ namespace Robomongo
 
         _updateBar = new QToolBar("Updates Toolbar");
         _updateBar->addWidget(updateBarWid);
-        _updateBar->setStyleSheet("background-color: #b3e0ff; border: none;");  // blue
+        _updateBar->setStyleSheet("background-color: #2a82da; color: white; border: none;");  // theme-neutral blue
         addToolBarBreak();
         addToolBar(_updateBar);
         _updateBar->setHidden(true);
@@ -611,7 +614,7 @@ namespace Robomongo
 
         createTabs();
         createStatusBar();
-        setWindowTitle("Robo 3T - " + QString(PROJECT_VERSION_SHORT));
+        setWindowTitle("RoboTo - " + QString(PROJECT_VERSION_SHORT));
         setWindowIcon(GuiRegistry::instance().mainWindowIcon());
 
         QTimer::singleShot(0, this, SLOT(manageConnections()));       
@@ -1200,7 +1203,7 @@ namespace Robomongo
     {
 #if defined(Q_OS_WIN)
         if (_trayIcon->contextMenu()->actions().size() > 0 && isHidden()) {
-            _trayIcon->contextMenu()->actions().at(0)->setText("Show Robo 3T");
+            _trayIcon->contextMenu()->actions().at(0)->setText("Show RoboTo");
         }
 #endif
     }

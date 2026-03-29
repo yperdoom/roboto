@@ -19,6 +19,7 @@
 #include "robomongo/core/utils/Logger.h"       
 #include "robomongo/gui/MainWindow.h"
 #include "robomongo/gui/AppStyle.h"
+#include "robomongo/gui/AppTheme.h"
 #include "robomongo/gui/dialogs/EulaDialog.h"
 #include "robomongo/ssh/ssh.h"
 #include "robomongo/utils/RoboCrypt.h"       
@@ -92,6 +93,9 @@ int main(int argc, char *argv[], char** envp)
         settings->addAcceptedEulaVersion(PROJECT_VERSION);
         settings->save();
     }  
+
+    // Init GUI theme (must come before initStyle so Fusion is set first)
+    Robomongo::AppThemeUtils::initTheme();
 
     // Init GUI style
     Robomongo::AppStyleUtils::initStyle();

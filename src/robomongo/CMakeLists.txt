@@ -43,6 +43,7 @@ set(SOURCES
     core/events/MongoEvents.cpp
     core/domain/MongoDocument.cpp
     gui/AppStyle.cpp
+    gui/AppTheme.cpp
     core/domain/MongoServer.cpp
     core/domain/MongoShell.cpp
     core/domain/MongoDatabase.cpp
