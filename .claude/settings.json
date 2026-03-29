@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "/home/pedro/mp/robomongo-shell"
+    ]
+  }
+}
