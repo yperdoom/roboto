@@ -27,5 +27,6 @@ namespace Robomongo
         QCheckBox *_loadMongoRcJsCheckBox;
         QCheckBox *_disabelConnectionShortcutsCheckBox;
         QComboBox *_stylesComboBox;
+        QComboBox *_themeComboBox;
     };
 }

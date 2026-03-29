@@ -108,6 +108,7 @@ namespace Robomongo
         _lineNumbers(false),
         _disableConnectionShortcuts(false),
         _batchSize(50),
+        _currentTheme("Dark"),
         _textFontFamily(""),
         _textFontPointSize(-1),
         _mongoTimeoutSec(10),
@@ -271,6 +272,11 @@ namespace Robomongo
             _currentStyle = AppStyle::StyleName;
         }
 
+        _currentTheme = map.value("theme").toString();
+        if (_currentTheme.isEmpty()) {
+            _currentTheme = "Dark";
+        }
+
         // Load font information
         _textFontFamily = map.value("textFontFamily").toString();
         _textFontPointSize = map.value("textFontPointSize").toInt();
@@ -370,8 +376,9 @@ namespace Robomongo
         map.insert("mongoTimeoutSec", _mongoTimeoutSec);
         map.insert("shellTimeoutSec", _shellTimeoutSec);
 
-        // 10. Save style
+        // 10. Save style and theme
         map.insert("style", _currentStyle);
+        map.insert("theme", _currentTheme);
 
         // 11. Save font information
         map.insert("textFontFamily", _textFontFamily);
@@ -505,6 +512,11 @@ namespace Robomongo
     void SettingsManager::setCurrentStyle(const QString& style)
     {
         _currentStyle = style;
+    }
+
+    void SettingsManager::setCurrentTheme(const QString& theme)
+    {
+        _currentTheme = theme;
     }
 
     void SettingsManager::setTextFontFamily(const QString& fontFamily)

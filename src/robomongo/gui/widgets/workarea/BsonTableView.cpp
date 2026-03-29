@@ -21,7 +21,7 @@ namespace Robomongo
 
         verticalHeader()->setDefaultAlignment(Qt::AlignLeft);
         horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
-        setStyleSheet("QTableView { border-left: 1px solid #c7c5c4; border-top: 1px solid #c7c5c4; gridline-color: #edebea;}");
+        setStyleSheet("QTableView { border-left: 1px solid palette(mid); border-top: 1px solid palette(mid); gridline-color: palette(mid); }");
 
         setSelectionMode(QAbstractItemView::ExtendedSelection);
         setSelectionBehavior(QAbstractItemView::SelectItems);
