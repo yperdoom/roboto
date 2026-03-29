@@ -15,7 +15,7 @@ execute_process(
 string(TIMESTAMP timestamp "%Y-%m-%d")
 
 # Package name (as it should appear in UI)
-set(CPACK_PACKAGE_NAME robo3t)
+set(CPACK_PACKAGE_NAME roboto)
 
 # Version of the package
 set(CPACK_PACKAGE_VERSION_MAJOR     ${PROJECT_VERSION_MAJOR})
@@ -34,10 +34,10 @@ set(CPACK_MONOLITHIC_INSTALL ON)
 set(CPACK_STRIP_FILES ON)
 
 # Additional information
-set(CPACK_PACKAGE_VENDOR "3T Software Labs Ltd")
-set(CPACK_PACKAGE_CONTACT robo3t@3t.io)
+set(CPACK_PACKAGE_VENDOR "RoboTo contributors")
+set(CPACK_PACKAGE_CONTACT roboto@github.com)
 set(CPACK_PACKAGE_DESCRIPTION "Shell-centric cross-platform MongoDB management tool.")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Robo 3T is a shell-centric cross-platform MongoDB management tool.")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "RoboTo is a community fork of Robo 3T — shell-centric MongoDB management tool.")
 
 # Use lowercase for system name and package file name
 string(TOLOWER ${CMAKE_SYSTEM_NAME} system_name)
