@@ -73,6 +73,12 @@ elseif(SYSTEM_MACOSX)
         DESTINATION ${lib_dir}/lib)
 elseif(SYSTEM_LINUX)
     # OpenSSL 3.x is available system-wide on Linux; no need to bundle it.
+
+    # Install app icon so the .desktop entry and installers can reference it
+    install(
+        FILES "${CMAKE_SOURCE_DIR}/src/robomongo/gui/resources/icons/logo-256x256.png"
+        DESTINATION "share/icons"
+        RENAME "roboto.png")
 endif()
 
 # Install binary

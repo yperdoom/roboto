@@ -4,6 +4,14 @@ RoboTo is a community fork of [Robo 3T](https://github.com/Studio3T/robomongo) (
 
 The goal is to keep the tool alive, modernise its dependencies, and improve the user experience — starting with visual quality and security updates.
 
+## Install (Linux)
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/yperdoom/roboto/master/install.sh)
+```
+
+This downloads the latest release, installs to `~/.local/share/roboto`, creates a `roboto` command and adds RoboTo to your app launcher.
+
 ## Version
 
 **RoboTo 1.0.0** — based on Robo 3T 1.4.4 (MongoDB 4.2 shell)
